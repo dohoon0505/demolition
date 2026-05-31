@@ -1,0 +1,210 @@
+/* ============================================================
+   Solution — Figma node 2:318 (Frame 26, 360×1216, 주황 배경)
+   ============================================================ */
+.solution {
+  position: relative;
+  z-index: 1;
+  background: var(--orange);
+  padding: 40px 30px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+/* ---- 헤드라인 ---- */
+.sol__head {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.sol__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border: 2px solid #000;
+  border-radius: 500px;
+  background: #fff;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.sol__title {
+  text-align: center;
+}
+.sol__title-line {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 35px;
+  line-height: 1.5;
+  color: #fff;
+}
+
+/* ---- Before 사례 카드 ---- */
+.sol__cases {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.case-card {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+  transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s ease;
+}
+.case-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.28);
+}
+.case-card__photo {
+  width: 100%;
+  aspect-ratio: 300 / 163;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
+  background: #111;
+}
+.case-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease-out-expo);
+}
+.case-card:hover .case-card__img {
+  transform: scale(1.07);
+}
+.case-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: #fff;
+  border-radius: 0 0 10px 10px;
+}
+.case-card__name {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #000;
+}
+.case-card__tag {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--orange);
+}
+
+/* ---- 구분선 (CSS 점선, 왼→오 와이프 reveal) ---- */
+.sol__divider {
+  width: 300px;
+  max-width: 100%;
+  height: 0;
+  border-top: 1.6px dashed #1c1c1c;
+}
+
+/* ---- 영수증 + 신청 ---- */
+.sol__apply-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  scroll-margin-top: 80px;
+}
+.receipt--solution {
+  width: 337px;
+  height: 337px;
+  margin: 0 auto;
+  filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.3));
+  animation: float-bob 6s ease-in-out infinite;
+}
+.receipt__head--sol {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 8px;
+  top: 51px;
+  left: 39px;
+  right: auto;
+  width: 235px;
+  text-align: left;
+}
+.receipt__head-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.receipt__flower--lg {
+  width: 20px;
+  height: 20px;
+}
+.receipt__title--lg {
+  font-size: 20px;
+}
+.receipt__sub--sol {
+  position: static;
+  top: auto;
+  left: auto;
+  right: auto;
+  text-align: left;
+  font-weight: 500;
+  font-size: 14px;
+}
+.receipt__rows--sol {
+  top: 140px;
+  left: 39px;
+  width: 259px;
+  gap: 20px;
+}
+.receipt__row-label--lg {
+  font-size: 17px;
+}
+.receipt__row-value--lg {
+  font-weight: 700;
+  font-size: 17px;
+}
+
+/* ---- 신청 블록 ---- */
+.sol__apply {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.sol__apply-btn {
+  width: 100%;
+  padding: 18px 5px;
+  border-radius: 8px;
+  font-size: 15px;
+}
+.sol__apply-icon {
+  width: 20px;
+  height: 15px;
+}
+.sol__free {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--lime);
+}
+.sol__disclaimer {
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #fff;
+}

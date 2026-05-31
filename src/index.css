@@ -1,0 +1,381 @@
+/* ============================================================
+   화환·화분 수거 — 글로벌 토큰 · 프레임 · 인터랙션 유틸리티
+   폰트: esamanru(디스플레이) + Pretendard(본문, index.html <link>)
+   ============================================================ */
+
+/* ---- esamanru 웹폰트 (fonts-archive CDN) ---- */
+@font-face {
+  font-family: 'esamanru';
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/gh/fonts-archive/esamanru/esamanru-Light.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/esamanru/esamanru-Light.woff') format('woff');
+}
+@font-face {
+  font-family: 'esamanru';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/gh/fonts-archive/esamanru/esamanru-Medium.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/esamanru/esamanru-Medium.woff') format('woff');
+}
+@font-face {
+  font-family: 'esamanru';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/gh/fonts-archive/esamanru/esamanru-Bold.woff2') format('woff2'),
+    url('https://cdn.jsdelivr.net/gh/fonts-archive/esamanru/esamanru-Bold.woff') format('woff');
+}
+
+/* ---- Design tokens ---- */
+:root {
+  --black: #000;
+  --lime: #d5ff03;
+  --orange: #ff6600;
+  --red: #de2927;
+  --white: #ffffff;
+  --ink: #222222;
+  --ink-2: #333333;
+  --ink-3: #555555;
+
+  --frame-w: 460px;
+
+  --font-display: 'esamanru', 'Pretendard Variable', 'Pretendard', sans-serif;
+  --font-body: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---- Reset / base ---- */
+* {
+  box-sizing: border-box;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background: #000;
+  color: #fff;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 2px;
+}
+
+/* ---- Frame shell (PC: 최대 460px 중앙 정렬, easysite 패턴) ---- */
+.app {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background: #000;
+}
+.app-frame {
+  position: relative;
+  width: 100%;
+  max-width: var(--frame-w);
+  min-height: 100vh;
+  overflow-x: clip;
+  background: #000;
+}
+@media (min-width: 461px) {
+  .app {
+    background: radial-gradient(120% 120% at 50% 0%, #161616 0%, #050505 60%, #000 100%);
+  }
+  .app-frame {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05), 0 24px 90px rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* ---- Text color utilities ---- */
+.tx-lime { color: var(--lime); }
+.tx-red { color: var(--red); }
+.tx-white { color: #fff; }
+.tx-orange { color: var(--orange); }
+.tx-ink { color: var(--ink); }
+.tx-dim { color: rgba(255, 255, 255, 0.2); }
+
+/* ---- esamanru weight utilities ---- */
+.fw-light { font-weight: 300; }
+.fw-medium { font-weight: 500; }
+.fw-bold { font-weight: 700; }
+
+/* ============================================================
+   Reveal (스크롤 진입 애니메이션)
+   ============================================================ */
+.reveal {
+  --rv-dur: 760ms;
+  --rv-ease: var(--ease-out-expo);
+  opacity: 0;
+  transition-property: opacity, transform, filter, clip-path;
+  transition-duration: var(--rv-dur);
+  transition-timing-function: var(--rv-ease);
+  transition-delay: var(--rv-delay, 0ms);
+  will-change: opacity, transform;
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+.reveal--up { transform: translateY(36px); }
+.reveal--down { transform: translateY(-32px); }
+.reveal--left { transform: translateX(-44px); }
+.reveal--right { transform: translateX(44px); }
+.reveal--fade { transform: none; }
+.reveal--scale { transform: scale(0.9); }
+.reveal--pop {
+  transform: scale(0.5);
+  --rv-ease: var(--ease-spring);
+  --rv-dur: 640ms;
+}
+.reveal--zoom { transform: scale(1.14); }
+.reveal--blur {
+  filter: blur(16px);
+  transform: translateY(20px);
+}
+/* NOTE: avoid clip-path for hidden state — Chromium reduces a target's
+   IntersectionObserver ratio by its own clip-path, so a fully-clipped element
+   never reaches the reveal threshold. Transform-based reveals are IO-safe. */
+.reveal--clip {
+  transform: translateY(28px) scale(0.97);
+}
+.reveal--wipe {
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+/* ============================================================
+   Words (단어별 스태거 헤드라인)
+   ============================================================ */
+.words { display: block; }
+.words__line { display: block; }
+.words__wrap { display: inline; }
+.words__w {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.6em);
+  transition: opacity 0.62s var(--ease-out-expo), transform 0.62s var(--ease-out-expo),
+    filter 0.62s var(--ease-out-expo);
+  transition-delay: inherit;
+}
+.words.is-in .words__w {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+.words--blur .words__w { filter: blur(12px); }
+.words--rise .words__w { transform: translateY(1.1em); }
+
+/* ============================================================
+   CTA 버튼 — shine + ripple + press
+   ============================================================ */
+.cta-btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  transition: transform 150ms var(--ease-out-expo), box-shadow 220ms ease, filter 220ms ease;
+}
+.cta-btn:active { transform: scale(0.97); }
+.cta-btn--orange { background: var(--orange); color: #fff; }
+.cta-btn--white { background: #fff; color: var(--ink); }
+.cta-btn--lime { background: var(--lime); color: var(--ink); }
+.cta-btn--orange:hover { box-shadow: 0 10px 26px rgba(255, 102, 0, 0.45); }
+.cta-btn--white:hover { box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28); }
+.cta-btn--lime:hover { box-shadow: 0 10px 26px rgba(213, 255, 3, 0.4); }
+
+/* periodic shine sweep */
+.btn-shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -130%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  transform: skewX(-20deg);
+  animation: btn-shine 3.4s ease-in-out infinite;
+  pointer-events: none;
+}
+.cta-btn--white.btn-shine::before {
+  background: linear-gradient(100deg, transparent, rgba(0, 0, 0, 0.07), transparent);
+}
+@keyframes btn-shine {
+  0%, 55% { left: -130%; }
+  100% { left: 170%; }
+}
+
+/* material ripple */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(0);
+  animation: ripple-out 620ms var(--ease-out-expo);
+  pointer-events: none;
+}
+.cta-btn--white .ripple,
+.cta-btn--lime .ripple {
+  background: rgba(0, 0, 0, 0.12);
+}
+@keyframes ripple-out {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* ============================================================
+   Scroll progress bar
+   ============================================================ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--frame-w);
+  height: 3px;
+  z-index: 90;
+  background: rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+.scroll-progress__fill {
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  background: linear-gradient(90deg, var(--lime), var(--orange));
+  box-shadow: 0 0 12px rgba(213, 255, 3, 0.6);
+}
+
+/* ============================================================
+   Floating CTA (히어로 이후 등장)
+   ============================================================ */
+.floating-cta {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--frame-w);
+  padding: 0 16px calc(14px + env(safe-area-inset-bottom, 0px));
+  z-index: 80;
+  pointer-events: none;
+}
+.floating-cta__btn {
+  pointer-events: auto;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  height: 54px;
+  border-radius: 15px;
+  background: var(--orange);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 16px;
+  box-shadow: 0 12px 32px rgba(255, 102, 0, 0.5);
+  transform: translateY(150%);
+  opacity: 0;
+  transition: transform 520ms var(--ease-spring), opacity 360ms ease;
+}
+.floating-cta.is-show .floating-cta__btn {
+  transform: translateY(0);
+  opacity: 1;
+}
+.floating-cta__btn:active {
+  transform: translateY(2px) scale(0.99);
+}
+.floating-cta__icon {
+  width: 20px;
+  height: 15px;
+  filter: brightness(0) invert(1);
+}
+
+/* ============================================================
+   Shared keyframes (flourishes)
+   ============================================================ */
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+@keyframes float-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(213, 255, 3, 0); }
+  50% { box-shadow: 0 0 22px rgba(213, 255, 3, 0.55); }
+}
+@keyframes scroll-hint {
+  0%, 100% { transform: translateY(0); opacity: 0.55; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes badge-pop {
+  0% { transform: scale(0.7); opacity: 0; }
+  60% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.countup {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+
+/* ============================================================
+   Reduced motion — 접근성
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal,
+  .words__w {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    clip-path: none !important;
+  }
+}

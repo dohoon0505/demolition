@@ -1,0 +1,24 @@
+{
+  "name": "demolition",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "화환·화분 수거 서비스 모바일 랜딩 — React + Vite, 인터랙티브 모바일 페이지",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11"
+  }
+}
