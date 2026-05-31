@@ -120,8 +120,9 @@
   margin: 0 auto;
 }
 .receipt--hero {
-  width: 310px;
-  height: 310px;
+  /* 영수증 카드 15% 확대 (310 -> 357). 오버레이·텍스트를 함께 비례 확대 */
+  width: 357px;
+  height: 357px;
   filter: drop-shadow(0 18px 34px rgba(0, 0, 0, 0.45));
   animation: float-bob 5.5s ease-in-out infinite;
 }
@@ -136,46 +137,46 @@
 
 .receipt__head {
   position: absolute;
-  top: 44px;
+  top: 51px;
   left: 0;
   right: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 6px;
 }
 .receipt__flower {
-  width: 18px;
-  height: 18px;
+  width: 21px;
+  height: 21px;
 }
 .receipt__title {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 18px;
+  font-size: 21px;
   line-height: 1;
   color: var(--orange);
 }
 .receipt__sub {
   position: absolute;
-  top: 72px;
+  top: 83px;
   left: 0;
   right: 0;
   margin: 0;
   text-align: center;
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--ink-2);
 }
 
 .receipt__rows {
   position: absolute;
-  top: 110px;
-  left: 49px;
-  width: 212px;
+  top: 127px;
+  left: 56px;
+  width: 244px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 .receipt__row {
   display: flex;
@@ -186,42 +187,42 @@
 .receipt__row-label {
   font-family: var(--font-display);
   font-weight: 300;
-  font-size: 13px;
+  font-size: 15px;
 }
 .receipt__row-value {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
 }
 .receipt__row-value--alt {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .receipt__cta {
   position: absolute;
-  top: 220px;
-  left: 49px;
-  width: 212px;
+  top: 253px;
+  left: 56px;
+  width: 244px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
 }
 .receipt__btn {
   width: 100%;
-  height: 40px;
-  font-size: 15px;
-  border-radius: 8px;
+  height: 46px;
+  font-size: 17px;
+  border-radius: 9px;
 }
 .receipt__btn-icon {
-  width: 20px;
-  height: 15px;
+  width: 23px;
+  height: 17px;
 }
 .receipt__note {
   margin: 0;
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: -0.18px;
   color: var(--ink-3);
   text-align: center;
