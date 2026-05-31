@@ -3,6 +3,8 @@
 개업 후 방치되는 화환·화분을 폐기물 전문가가 **신청 2일 내 100% 수거**하는 서비스의 모바일 랜딩 페이지입니다.
 [Figma 디자인](https://www.figma.com/design/Wevw8AmgqEqVvWsSOnqGQG/?node-id=1-3)을 기반으로 React로 구현했으며, 디자인 일치도 98%+를 목표로 했습니다.
 
+**🔗 라이브 데모 — https://dohoon0505.github.io/demolition/**
+
 ## 기술 스택
 
 - **React 18 + TypeScript + Vite**
@@ -33,6 +35,11 @@ npm run build      # 프로덕션 빌드 → dist/
 npm run preview    # 빌드 결과 미리보기
 npm run typecheck  # 타입 체크
 ```
+
+## 배포
+
+`main` 브랜치에 push하면 GitHub Actions(`.github/workflows/deploy.yml`)가 빌드 후 **GitHub Pages**에 자동 배포합니다.
+프로젝트 서브패스(`/demolition/`) 대응을 위해 빌드 시 Vite `base`를 설정하고, 모든 public 에셋을 `asset()` 헬퍼(=`import.meta.env.BASE_URL` 기준)로 참조합니다.
 
 ## 구조
 
