@@ -3,7 +3,7 @@ import { type ReactNode, type PointerEvent, useRef } from 'react'
 type Props = {
   children: ReactNode
   className?: string
-  variant?: 'orange' | 'white' | 'lime'
+  variant?: 'orange' | 'white' | 'lime' | 'green' | 'dark' | 'coral'
   onClick?: () => void
   ariaLabel?: string
 }

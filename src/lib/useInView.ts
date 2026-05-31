@@ -12,7 +12,7 @@ type Options = {
  * Returns a ref to attach and the current visibility boolean.
  */
 export function useInView<T extends HTMLElement = HTMLElement>(options: Options = {}) {
-  const { threshold = 0.18, rootMargin = '0px 0px -8% 0px', once = true } = options
+  const { threshold = 0, rootMargin = '0px 0px -12% 0px', once = true } = options
   const ref = useRef<T | null>(null)
   const [inView, setInView] = useState(false)
 
