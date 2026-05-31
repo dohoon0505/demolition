@@ -120,8 +120,9 @@
   scroll-margin-top: 80px;
 }
 .receipt--solution {
-  width: 337px;
-  height: 337px;
+  /* 가격표 10% 확대 (337 -> 371). 영수증 이미지·오버레이를 함께 비례 확대해 정렬 유지 */
+  width: 371px;
+  height: 371px;
   margin: 0 auto;
   filter: drop-shadow(0 18px 36px rgba(0, 0, 0, 0.3));
   animation: float-bob 6s ease-in-out infinite;
@@ -130,11 +131,11 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 8px;
-  top: 51px;
-  left: 39px;
+  gap: 9px;
+  top: 56px;
+  left: 43px;
   right: auto;
-  width: 235px;
+  width: 259px;
   text-align: left;
 }
 .receipt__head-row {
@@ -143,11 +144,11 @@
   gap: 5px;
 }
 .receipt__flower--lg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 }
 .receipt__title--lg {
-  font-size: 20px;
+  font-size: 22px;
 }
 .receipt__sub--sol {
   position: static;
@@ -156,20 +157,20 @@
   right: auto;
   text-align: left;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 15px;
 }
 .receipt__rows--sol {
-  top: 140px;
-  left: 39px;
-  width: 259px;
-  gap: 20px;
+  top: 154px;
+  left: 43px;
+  width: 285px;
+  gap: 22px;
 }
 .receipt__row-label--lg {
-  font-size: 17px;
+  font-size: 19px;
 }
 .receipt__row-value--lg {
   font-weight: 700;
-  font-size: 17px;
+  font-size: 19px;
 }
 
 /* ---- 신청 블록 ---- */
