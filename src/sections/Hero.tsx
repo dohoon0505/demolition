@@ -3,6 +3,7 @@ import { Words } from '../components/Words'
 import { Reveal } from '../components/Reveal'
 import { CountUp } from '../components/CountUp'
 import { CTAButton } from '../components/CTAButton'
+import { asset } from '../lib/asset'
 import './hero.css'
 
 const WARN_TEXT =
@@ -39,7 +40,12 @@ export function Hero() {
 
   return (
     <section className="hero">
-      <div className="hero__bg" ref={bgRef} aria-hidden="true" />
+      <div
+        className="hero__bg"
+        ref={bgRef}
+        aria-hidden="true"
+        style={{ backgroundImage: `url(${asset('assets/hero-bg.jpg')})` }}
+      />
       <div className="hero__overlay" aria-hidden="true" />
 
       {/* 상단 경고 바 (마퀴) */}
@@ -71,10 +77,10 @@ export function Hero() {
       {/* 영수증 카드 */}
       <Reveal variant="up" delay={920} duration={840} className="hero__receipt-wrap">
         <div className="receipt receipt--hero">
-          <img src="/assets/receipt1.png" alt="" className="receipt__paper" />
+          <img src={asset('assets/receipt1.png')} alt="" className="receipt__paper" />
 
           <div className="receipt__head">
-            <img src="/assets/icon-flower-18.svg" alt="" className="receipt__flower" />
+            <img src={asset('assets/icon-flower-18.svg')} alt="" className="receipt__flower" />
             <span className="receipt__title">화환·화분수거</span>
           </div>
           <p className="receipt__sub">신청 당일 ~ 2일 내 수거 100% 완료!</p>
@@ -97,7 +103,7 @@ export function Hero() {
 
           <div className="receipt__cta">
             <CTAButton variant="orange" className="receipt__btn" ariaLabel="간편 수거신청">
-              <img src="/assets/icon-sms-1.svg" alt="" className="receipt__btn-icon" />
+              <img src={asset('assets/icon-sms-1.svg')} alt="" className="receipt__btn-icon" />
               간편 수거신청
             </CTAButton>
             <p className="receipt__note">수거 장소, 수량을 기재하여 문의주세요!</p>

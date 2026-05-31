@@ -1,11 +1,12 @@
 import { Reveal } from '../components/Reveal'
 import { CountUp } from '../components/CountUp'
 import { CTAButton } from '../components/CTAButton'
+import { asset } from '../lib/asset'
 import './solution.css'
 
 const CASES = [
-  { img: '/assets/before-izakaya.jpg', name: "이자카야 ‘우규’ 개업화환" },
-  { img: '/assets/before-flowerlids.jpg', name: "삼겹전문점 ‘꽃뚜껑’ 개업화환" },
+  { img: asset('assets/before-izakaya.jpg'), name: "이자카야 ‘우규’ 개업화환" },
+  { img: asset('assets/before-flowerlids.jpg'), name: "삼겹전문점 ‘꽃뚜껑’ 개업화환" },
 ]
 
 const PRICES = [
@@ -57,11 +58,11 @@ export function Solution() {
       {/* 4. 영수증 + 신청 */}
       <div className="sol__apply-wrap" id="apply">
         <Reveal variant="up" className="receipt receipt--solution" threshold={0.25}>
-          <img src="/assets/receipt2.png" alt="" className="receipt__paper" />
+          <img src={asset('assets/receipt2.png')} alt="" className="receipt__paper" />
 
           <div className="receipt__head receipt__head--sol">
             <div className="receipt__head-row">
-              <img src="/assets/icon-flower-20.svg" alt="" className="receipt__flower receipt__flower--lg" />
+              <img src={asset('assets/icon-flower-20.svg')} alt="" className="receipt__flower receipt__flower--lg" />
               <span className="receipt__title receipt__title--lg">화환·화분수거</span>
             </div>
             <p className="receipt__sub receipt__sub--sol">신청 당일 ~ 2일 내 수거 100% 완료!</p>
@@ -86,7 +87,7 @@ export function Solution() {
 
         <div className="sol__apply">
           <CTAButton variant="white" className="sol__apply-btn" ariaLabel="간편 수거신청 문자발송">
-            <img src="/assets/icon-sms-2.svg" alt="" className="sol__apply-icon" />
+            <img src={asset('assets/icon-sms-2.svg')} alt="" className="sol__apply-icon" />
             간편 수거신청(문자발송)
           </CTAButton>
           <Reveal as="p" variant="fade" className="sol__free" delay={120}>

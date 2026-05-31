@@ -1,5 +1,6 @@
 import { Reveal } from '../components/Reveal'
 import { CountUp } from '../components/CountUp'
+import { asset } from '../lib/asset'
 import './problem.css'
 
 export function Problem() {
@@ -55,7 +56,7 @@ export function Problem() {
 
       {/* 2. 방치 이미지 */}
       <Reveal variant="clip" className="problem__photo problem__photo--neglect" duration={900}>
-        <img src="/assets/neglect.jpg" alt="처리하지 못해 방치된 개업 화환" className="problem__photo-img" />
+        <img src={asset('assets/neglect.jpg')} alt="처리하지 못해 방치된 개업 화환" className="problem__photo-img" />
       </Reveal>
 
       {/* 3. 그대로 방치해두면 */}

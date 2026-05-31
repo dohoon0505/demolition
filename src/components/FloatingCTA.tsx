@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
+import { asset } from '../lib/asset'
 
-const iconSms = '/assets/icon-sms-2.svg'
+const iconSms = asset('assets/icon-sms-2.svg')
 
 /**
  * Sticky bottom call-to-action that slides up after the hero scrolls away
