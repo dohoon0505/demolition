@@ -71,7 +71,7 @@ export function Problem() {
 
       {/* 4. 불법 적치물 이미지 */}
       <Reveal variant="clip" className="problem__photo problem__photo--fine" duration={900}>
-        <img src="/assets/fine.png" alt="불법 적치물이 된 화환" className="problem__photo-img" />
+        <img src={asset('assets/fine.png')} alt="불법 적치물이 된 화환" className="problem__photo-img" />
       </Reveal>
 
       {/* 5. 불법 적치물이 됩니다 */}
