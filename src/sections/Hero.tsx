@@ -52,9 +52,11 @@ export function Hero() {
       <div className="hero__warn">
         <div className="hero__warn-track">
           <span className="hero__warn-text">{WARN_TEXT}</span>
+          <span className="hero__warn-dot" aria-hidden="true" />
           <span className="hero__warn-text" aria-hidden="true">
             {WARN_TEXT}
           </span>
+          <span className="hero__warn-dot" aria-hidden="true" />
         </div>
       </div>
 

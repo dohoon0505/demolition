@@ -49,12 +49,20 @@
 }
 .hero__warn-text {
   display: inline-block;
-  padding: 0 28px;
   font-family: var(--font-display);
   font-weight: 500;
   font-size: 14px;
   line-height: 1.4;
   color: var(--ink);
+}
+.hero__warn-dot {
+  flex: none;
+  align-self: center;
+  width: 4px;
+  height: 4px;
+  margin: 0 12px;
+  border-radius: 50%;
+  background: rgba(34, 34, 34, 0.5);
 }
 
 /* ---- 타이틀 ---- */
