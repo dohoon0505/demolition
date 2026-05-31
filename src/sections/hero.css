@@ -26,21 +26,21 @@
   background-size: cover;
   background-position: center;
   transform: scale(1.05);
-  /* 이미지 자체의 밝은 부분(하이라이트)을 눌러 스크롤 시 튀지 않도록 */
-  filter: brightness(0.5) saturate(0.9);
+  /* 하이라이트만 살짝 눌러줌 (이미지는 보이게 유지) */
+  filter: brightness(0.7);
   will-change: transform;
 }
 .hero__overlay {
   position: absolute;
   inset: 0;
-  /* 위는 어둑하게, 영수증이 시작되는 지점(약 58%)부터는 완전한 검정으로
-     → 아래 검정 섹션과 매끄럽게 연결되고 스크롤 시 밝은 부분이 보이지 않음 */
+  /* 위쪽은 어두운 이미지가 보이도록 살짝만 덮고, 아래로 갈수록 완전한
+     검정으로 → 영수증 영역은 어둡고 아래 검정 섹션과 매끄럽게 연결 */
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.72) 0%,
-    rgba(0, 0, 0, 0.84) 28%,
-    rgba(0, 0, 0, 0.96) 46%,
-    rgba(0, 0, 0, 1) 58%
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.55) 30%,
+    rgba(0, 0, 0, 0.86) 52%,
+    rgba(0, 0, 0, 1) 68%
   );
 }
 
