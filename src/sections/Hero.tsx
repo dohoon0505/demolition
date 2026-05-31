@@ -27,7 +27,8 @@ export function Hero() {
         raf = 0
         const y = window.scrollY
         if (bgRef.current && y < 760) {
-          bgRef.current.style.transform = `translate3d(0, ${y * 0.26}px, 0) scale(1.08)`
+          // 약한 패럴랙스. .hero__bg 가 위아래 여유(-8%)를 가지므로 박스를 항상 덮음
+          bgRef.current.style.transform = `translate3d(0, ${y * 0.08}px, 0) scale(1.05)`
         }
       })
     }
@@ -40,13 +41,16 @@ export function Hero() {
 
   return (
     <section className="hero">
-      <div
-        className="hero__bg"
-        ref={bgRef}
-        aria-hidden="true"
-        style={{ backgroundImage: `url(${asset('assets/hero-bg.jpg')})` }}
-      />
-      <div className="hero__overlay" aria-hidden="true" />
+      {/* 배경 이미지 + 오버레이를 하나의 박스로 클립 → parallax 이동 시에도
+          이미지가 어두운 영역 밖으로 새지 않음 */}
+      <div className="hero__media" aria-hidden="true">
+        <div
+          className="hero__bg"
+          ref={bgRef}
+          style={{ backgroundImage: `url(${asset('assets/hero-bg.jpg')})` }}
+        />
+        <div className="hero__overlay" />
+      </div>
 
       {/* 상단 경고 바 (마퀴) */}
       <div className="hero__warn">

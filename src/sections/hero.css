@@ -14,18 +14,34 @@
   background: #000;
 }
 
-.hero__bg {
+.hero__media {
   position: absolute;
   inset: 0;
+  overflow: hidden; /* parallax 이미지를 히어로 박스(452px)로 클립 */
+  z-index: 0;
+}
+.hero__bg {
+  position: absolute;
+  inset: -8% 0; /* 위아래 여유 → parallax 이동 시 가장자리 노출 방지 */
   background-size: cover;
   background-position: center;
-  transform: scale(1.08);
+  transform: scale(1.05);
+  /* 이미지 자체의 밝은 부분(하이라이트)을 눌러 스크롤 시 튀지 않도록 */
+  filter: brightness(0.5) saturate(0.9);
   will-change: transform;
 }
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.84) 0%, rgba(0, 0, 0, 0.9) 100%);
+  /* 위는 어둑하게, 영수증이 시작되는 지점(약 58%)부터는 완전한 검정으로
+     → 아래 검정 섹션과 매끄럽게 연결되고 스크롤 시 밝은 부분이 보이지 않음 */
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0.84) 28%,
+    rgba(0, 0, 0, 0.96) 46%,
+    rgba(0, 0, 0, 1) 58%
+  );
 }
 
 /* ---- 상단 경고 바 ---- */
